@@ -23,27 +23,25 @@ const Testimonial = () => {
   console.log(reviews);
 
   return (
-    <div>
-      <SectionHeading subHeading="What our client say" heading="Testimonials" />
+    <div className="my-20 bg-white py-10">
+      <SectionHeading  subHeading="What our client say" heading="Testimonials" />
 
-      <div>
-        <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
-          {reviews.map((review) => (
-            <SwiperSlide key={review._id}>
-              <div className="m-20 px-40 text-black items-center flex flex-col">
-                <Rating
-                  style={{ maxWidth: 180 }}
-                  value={review.rating}
-                  readOnly
-                  className="mb-2"
-                />
-                <p className="mb-2">{review.details}</p>
-                <p className="text-2xl font-semibold">{review.name}</p>
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
+      <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
+        {reviews.map((review) => (
+          <SwiperSlide key={review._id}>
+            <div className="px-40 text-black items-center flex flex-col">
+              <Rating
+                style={{ maxWidth: 180 }}
+                value={review.rating}
+                readOnly
+                className="mb-2"
+              />
+              <p className="mb-2">{review.details}</p>
+              <p className="text-2xl font-semibold">{review.name}</p>
+            </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
     </div>
   );
 };
