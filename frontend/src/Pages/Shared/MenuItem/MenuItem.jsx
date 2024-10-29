@@ -2,10 +2,10 @@
 const MenuItem = ({item}) => {
     const {name,image,recipe,price} = item;
   return (
-    <div className="flex space-x-4">
+    <div className="flex space-x-4 max-w-screen-lg mx-auto">
         <img
-        style={{borderRadius:"0 200px 200px 200px"}} 
-        className="w-24"
+        style={{borderRadius:"0 100px 100px 100px"}} 
+        className="w-24 h-24 object-cover"
         src={image}
          alt="image" />
         <div>
