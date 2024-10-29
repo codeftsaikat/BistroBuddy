@@ -13,7 +13,7 @@ import SectionHeading from "../../../components/SectionHeading/SectionHeading";
 
 const Category = () => {
   return (
-    <section>
+    <section className="max-w-screen-lg mx-auto">
         <SectionHeading subHeading={"From 11.00 am to 10.00 pm"} heading={"Order Now"}/>
       <Swiper
         slidesPerView={4}

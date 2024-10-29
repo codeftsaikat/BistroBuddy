@@ -23,14 +23,17 @@ const Testimonial = () => {
   console.log(reviews);
 
   return (
-    <div>
-      <SectionHeading subHeading="What our client say" heading="Testimonials" />
+    <section className="bg-white">
+      <div className="pb-12 pt-4 max-w-screen-lg mx-auto">
+        <SectionHeading
+          subHeading="What our client say"
+          heading="Testimonials"
+        />
 
-      <div>
         <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
           {reviews.map((review) => (
             <SwiperSlide key={review._id}>
-              <div className="m-20 px-40 text-black items-center flex flex-col">
+              <div className="px-40 text-black items-center flex flex-col">
                 <Rating
                   style={{ maxWidth: 180 }}
                   value={review.rating}
@@ -44,7 +47,7 @@ const Testimonial = () => {
           ))}
         </Swiper>
       </div>
-    </div>
+    </section>
   );
 };
 

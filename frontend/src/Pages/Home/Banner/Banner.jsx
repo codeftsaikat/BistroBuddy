@@ -1,4 +1,4 @@
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import img_1 from "../../../assets/home/01.jpg";
 import img_2 from "../../../assets/home/02.jpg";
@@ -8,7 +8,7 @@ import img_5 from "../../../assets/home/05.png";
 import img_6 from "../../../assets/home/06.png";
 const Banner = () => {
   return (
-    <Carousel>
+    <Carousel className="text-center">
       <div>
         <img src={img_1} />
       </div>
@@ -32,3 +32,4 @@ const Banner = () => {
 };
 
 export default Banner;
+

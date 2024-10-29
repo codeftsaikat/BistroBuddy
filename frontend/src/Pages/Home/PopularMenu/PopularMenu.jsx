@@ -1,29 +1,22 @@
-import { useEffect, useState } from 'react'
 import SectionHeading from '../../../components/SectionHeading/SectionHeading'
 import MenuItem from '../../Shared/MenuItem/MenuItem';
+import useMenu from '../../../hooks/useMenu';
 const PopularMenu = () => {
-  const [menu,setMenu] = useState([]);
-  useEffect(()=>{
-    fetch('menu.json')
-    .then(res=>res.json())
-    .then(data=>{
-      const PopularItems = data.filter(item=>item.category==='popular');
-      setMenu(PopularItems)
-    })
-  },[]);
-  console.log(menu);
+  const [menu] = useMenu([]);
+  const Popular = menu.filter(item=>item.category==='popular')
   
   return (
-    <section>
+    <section className='max-w-screen-lg mx-auto'>
        <SectionHeading subHeading="Popular items" heading="from our menu"></SectionHeading>
        <div className='grid md:grid-cols-2 gap-6 my-8'>
         {
-          menu.map(item=><MenuItem
+          Popular.map(item=><MenuItem
           key={item._id}
           item={item}
           />)
         }
        </div>
+       <button className='btn btn-outline border-0 border-b-2 mt-3 mx-auto block'>View Full Menu</button>
     </section>
   )
 }
