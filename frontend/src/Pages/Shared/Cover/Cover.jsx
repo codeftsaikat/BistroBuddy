@@ -14,7 +14,7 @@ const Cover = ({ img, title, description, hVal }) => {
             height: `${hVal}px`,
           }}
         >
-          <div className="hero-content text-neutral-content text-center bg-black bg-opacity-50 w-4/6 py-10">
+          <div className="hero-content text-neutral-content text-center bg-black bg-opacity-50 w-3/6 py-10">
             <div className="max-w-md text-white">
               <h1 className="mb-5 text-4xl font-bold uppercase font-serif">{title}</h1>
               <p className="mb-5">{description}</p>

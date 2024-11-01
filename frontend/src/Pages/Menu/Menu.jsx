@@ -15,7 +15,6 @@ const Menu = () => {
   const salad = menu.filter((item) => item.category === "salad");
   const soup = menu.filter((item) => item.category === "soup");
   const offered = menu.filter((item) => item.category === "offered");
-console.log(pizza);
 
   return (
     <div>
@@ -44,21 +43,21 @@ console.log(pizza);
       {/* pizza */}
       <MenuCategory 
       items={pizza}
-      title={"Pizza"}
+      title={"pizza"}
       description={"Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s."}
       coverImg={PizzaImg}
       ></MenuCategory>
       {/* salad */}
       <MenuCategory 
       items={salad}
-      title={"Salad"}
+      title={"salad"}
       description={"Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s."}
       coverImg={SaladImg}
       ></MenuCategory>
       {/* soup */}
       <MenuCategory 
       items={soup}
-      title={"Soup"}
+      title={"soup"}
       description={"Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s."}
       coverImg={SoupImg}
       ></MenuCategory>
