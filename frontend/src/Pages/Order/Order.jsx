@@ -4,9 +4,9 @@ import Cover from "../Shared/Cover/Cover";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import useMenu from "../../hooks/useMenu";
-import FoodCard from "../../components/FoodCard/FoodCard";
 import { useParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import FoodTab from "./FoodTab/FoodTab";
 
 const Order = () => {
 
@@ -42,41 +42,11 @@ const Order = () => {
           <Tab>Drinks</Tab>
         </TabList>
 
-        <TabPanel>
-          <div className="grid md:grid-cols-3 place-items-center">
-            {salad.map((item) => (
-              <FoodCard key={item._id} item={item} />
-            ))}
-          </div>
-        </TabPanel>
-        <TabPanel>
-          <div className="grid md:grid-cols-3 place-items-center">
-            {pizza.map((item) => (
-              <FoodCard key={item._id} item={item} />
-            ))}
-          </div>
-        </TabPanel>
-        <TabPanel>
-          <div className="grid md:grid-cols-3 place-items-center">
-            {soup.map((item) => (
-              <FoodCard key={item._id} item={item} />
-            ))}
-          </div>
-        </TabPanel>
-        <TabPanel>
-          <div className="grid md:grid-cols-3 place-items-center">
-            {dessert.map((item) => (
-              <FoodCard key={item._id} item={item} />
-            ))}
-          </div>
-        </TabPanel>
-        <TabPanel>
-          <div className="grid md:grid-cols-3 place-items-center">
-            {drinks.map((item) => (
-              <FoodCard key={item._id} item={item} />
-            ))}
-          </div>
-        </TabPanel>
+        <TabPanel><FoodTab item={salad}/></TabPanel>
+        <TabPanel><FoodTab item={dessert}/></TabPanel>
+        <TabPanel><FoodTab item={pizza}/></TabPanel>
+        <TabPanel><FoodTab item={soup}/></TabPanel>
+        <TabPanel><FoodTab item={drinks}/></TabPanel>
       </Tabs>
     </div>
   );
