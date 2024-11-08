@@ -1,5 +1,12 @@
 import { createContext, useEffect, useState } from "react";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signOut,
+  updateProfile,
+} from "firebase/auth";
 import app from "../firebase/firebase.config";
 
 export const AuthContext = createContext(null);
@@ -9,10 +16,43 @@ const AuthProviders = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  // create user
+  const CreateUser = (email, password) => {
+    setLoading(true);
+    return createUserWithEmailAndPassword(auth, email, password);
+  };
+
+  // loginUser
+  const loginUser = (email, password) => {
+    setLoading(true);
+    return signInWithEmailAndPassword(auth, email, password);
+  };
+
+  // logOut
+  const logOut = () => {
+    setLoading(true);
+    return signOut(auth);
+  };
+
+  // update user
+  const updateUserProfile = (name, photo) => {
+    const displayName = typeof name === "string" ? name : "";
+    const photoURL = typeof photo === "string" ? photo : "";
+
+    // Log the values and types to verify
+    console.log("Updating profile with:", { displayName, photoURL });
+
+    return updateProfile(auth.currentUser, {
+      displayName:name,
+      photoURL:photo
+    });
+  };
+
+  // for get current user
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      console.log("Current user", currentUser);
+      console.log("Current user came from AuthProvider", currentUser);
       setLoading(false);
     });
     return () => {
@@ -20,7 +60,15 @@ const AuthProviders = ({ children }) => {
     };
   }, []);
 
-  const authInfo = { user, loading };
+  const authInfo = {
+    user,
+    loading,
+    CreateUser,
+    loginUser,
+    logOut,
+    updateUserProfile,
+  };
+
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
   );
