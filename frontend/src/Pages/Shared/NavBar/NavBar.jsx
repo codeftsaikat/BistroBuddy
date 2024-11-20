@@ -23,7 +23,7 @@ const NavBar = () => {
         <Link to="/order/salad">Order</Link>
       </li>
       <li>
-        <Link to="/order/salad">
+        <Link to="/dashboard/cart">
           <button className="btn bg-transparent border-none text-white hover:bg-transparent">
           <BsCart4 className="relative" size={24}/>
             <div className="badge badge-secondary absolute top-1 -right-1 text-white">+{cart.length}</div>
