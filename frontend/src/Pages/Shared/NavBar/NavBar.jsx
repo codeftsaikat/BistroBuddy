@@ -1,9 +1,12 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProviders";
+import { BsCart4 } from "react-icons/bs";
+import useCarts from "../../../hooks/useCarts";
 
 const NavBar = () => {
   const { user, logOut } = useContext(AuthContext);
+  const [cart] = useCarts([]);
 
   const handleLogout = () => {
     logOut();
@@ -19,12 +22,27 @@ const NavBar = () => {
       <li>
         <Link to="/order/salad">Order</Link>
       </li>
+      <li>
+        <Link to="/order/salad">
+          <button className="btn bg-transparent border-none text-white hover:bg-transparent">
+          <BsCart4 className="relative" size={24}/>
+            <div className="badge badge-secondary absolute top-1 -right-1 text-white">+{cart.length}</div>
+          </button>
+        </Link>
+      </li>
 
       <li>
         {user ? (
           <div className="flex gap-8">
-            <Link className="bg-transparent border border-white border-1 rounded-full px-4 py-2 font-mono font-normal hover:bg-blue-600 relative" onClick={handleLogout}>Logout</Link>
-            <span className="bg-orange-600 p-1 rounded-sm font-thin absolute -bottom-12">{user.displayName}</span>
+            <Link
+              className="bg-transparent border border-white border-1 rounded-full px-4 py-2 font-mono font-normal hover:bg-blue-600 relative"
+              onClick={handleLogout}
+            >
+              Logout
+            </Link>
+            <span className="bg-orange-600 px-1 py-2 rounded-md font-thin absolute -bottom-12 mt-2 ">
+              {user.displayName}
+            </span>
           </div>
         ) : (
           <Link to="/login">Login</Link>

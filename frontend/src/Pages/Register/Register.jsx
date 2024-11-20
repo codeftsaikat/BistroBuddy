@@ -25,11 +25,11 @@ const Register = () => {
             Swal.fire({
               position: "top-end",
               icon: "success",
-              title: "Registration Successful",
+              title: "Registration Successful Please Login Now!",
               showConfirmButton: false,
-              timer: 1500,
+              timer: 2000,
             });
-            navigate("/");
+            navigate("/login");
           })
           .catch((err) => console.error("Error updating profile:", err));
       })
