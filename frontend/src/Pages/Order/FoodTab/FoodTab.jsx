@@ -23,7 +23,7 @@ const FoodTab = ({ item }) => {
         className="mySwiper"
       >
         <SwiperSlide>
-          <div className="grid md:grid-cols-3 place-items-center">
+          <div className="grid md:grid-cols-3 place-items-center bg-gradient-to-r from-slate-900 via-cyan-800 to-gray-900">
             {item.map((item) => (
               <FoodCard key={item._id} item={item} />
             ))}

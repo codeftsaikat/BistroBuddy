@@ -8,7 +8,7 @@ const Main = () => {
     location.pathname.includes("login") ||
     location.pathname.includes("register");
   return (
-    <div>
+    <div className="bg-gradient-to-r from-slate-900 via-cyan-800 to-gray-900">
       {noHeaderFooter || <NavBar />}
       <Outlet />
       {noHeaderFooter || <Footer />}

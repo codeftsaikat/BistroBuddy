@@ -2,34 +2,45 @@ import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProviders";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import SocialLogin from "../../components/SocialLogin/SocialLogin";
 
 const Register = () => {
   const { CreateUser, updateUserProfile } = useContext(AuthContext);
   const navigate = useNavigate();
+  const axiosPublic = useAxiosPublic();
   const handleSubmit = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
     const name = e.target.name.value;
     const photo = e.target.photo.value;
-    console.log(email, password, photo, name)
+    console.log(email, password, photo, name);
     // register
     CreateUser(email, password)
       .then((result) => {
         const user = result.user;
         console.log("Came from register page", user);
 
-        updateUserProfile( name, photo)
+        updateUserProfile(name, photo)
           .then(() => {
-            console.log("User profile updated");
-            Swal.fire({
-              position: "top-end",
-              icon: "success",
-              title: "Registration Successful Please Login Now!",
-              showConfirmButton: false,
-              timer: 2000,
+            const userInfo = {
+              name: name,
+              email: email,
+            };
+            axiosPublic.post("/user", userInfo).then((res) => {
+              if (!res.data.insertedId) {
+                console.log("user added to the database");
+                Swal.fire({
+                  position: "top-end",
+                  icon: "success",
+                  title: "Registration Successful Please Login Now!",
+                  showConfirmButton: false,
+                  timer: 2000,
+                });
+                navigate("/login");
+              }
             });
-            navigate("/login");
           })
           .catch((err) => console.error("Error updating profile:", err));
       })
@@ -103,6 +114,9 @@ const Register = () => {
                   type="submit"
                   value={"Register"}
                 />
+              </div>
+              <div className="mx-auto block bg-red-600">
+                <SocialLogin className="text-red-500" />
               </div>
               <p className="text-center">
                 Have an account? Please{" "}
