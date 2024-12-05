@@ -7,13 +7,13 @@ import {
 } from "react-simple-captcha";
 import { AuthContext } from "../../providers/AuthProviders";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import SocialLogin from "../../components/SocialLogin/SocialLogin";
 
 function Login() {
   const [disable, setDisable] = useState(true);
   const { loginUser } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
-
   const from = location.state?.from?.pathname || "/";
 
   useEffect(() => {
@@ -54,6 +54,7 @@ function Login() {
       })
       .catch((error) => console.log(error.message));
   };
+
   return (
     <div>
       <div className="hero bg-base-200 min-h-screen">
@@ -118,6 +119,13 @@ function Login() {
                   disabled={disable}
                 />
               </div>
+
+              <div
+                className="mx-auto block bg-red-600"
+              >
+                <SocialLogin className="text-red-500" />
+              </div>
+
               <p className="text-center">
                 Don&apos;t have an account? Please{" "}
                 <span className="text-orange-500">
